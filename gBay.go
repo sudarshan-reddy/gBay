@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-//put these in a seperate file later
+//put these in a separate file later
 //or not
 func handleErr(err error){
 	if err != nil{
