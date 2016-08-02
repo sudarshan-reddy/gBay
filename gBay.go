@@ -17,7 +17,8 @@ type sliceNDice struct{
 	splitRatio float64
 }
 
-func(s sliceNDice) readCsv() []float64 {
+func(s sliceNDice) readCsv() [][]string {
+	var dataset [][]string
 	file, err := os.Open(s.fileName)
 	handleErr(err)
 	defer file.Close()
@@ -29,12 +30,13 @@ func(s sliceNDice) readCsv() []float64 {
 	handleErr(err)
 
 	for _, vals := range rawData{
-		fmt.Println(vals)
+		dataset = append(dataset,vals)
 	}
-	return []float64{0.1}
+	return dataset
 }
 
 func main(){
 	snd := sliceNDice{fileName: "data.csv" , splitRatio: 0.75}
-	fmt.Println(snd.readCsv())
+	dataset := snd.readCsv()
+	fmt.Println(dataset)
 }
