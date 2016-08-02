@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"math/rand"
+	"time"
 )
 
-//put these in a separate file later
+
+//Generic: put these in a separate file later
 //or not
 func handleErr(err error){
 	if err != nil{
@@ -25,12 +28,14 @@ func str2flt(ip []string) []float64{
 	return retfloat
 }
 
+    
 type sliceNDice struct{
 	fileName string
 	splitRatio float64
+	dataset [][]float64
 }
 
-func(s sliceNDice) readCsv() [][]float64 {
+func(s *sliceNDice) readCsv() [][]float64 {
 	var dataset [][]float64
 	file, err := os.Open(s.fileName)
 	handleErr(err)
@@ -45,11 +50,29 @@ func(s sliceNDice) readCsv() [][]float64 {
 	for _, vals := range rawData{
 		dataset = append(dataset,str2flt(vals))
 	}
+	s.dataset = dataset
 	return dataset
 }
 
+func(s sliceNDice) split() ([][]float64, [][]float64){
+	var trainingSet [][]float64
+	trainSize := int(float64(len(s.dataset)) * s.splitRatio)
+	testSet := s.dataset
+	for len(trainingSet) < trainSize{
+		index := rand.Intn(len(testSet) - 1)
+		trainingSet = append(trainingSet,testSet[index])
+		fmt.Println(testSet[index])
+		/*delete(testSet , index)*/
+	}
+	//fmt.Println(trainingSet, testSet)
+	return trainingSet , testSet
+}
+
 func main(){
-	snd := sliceNDice{fileName: "data.csv" , splitRatio: 0.75}
-	dataset := snd.readCsv()
-	fmt.Println(dataset)
+
+	rand.Seed(time.Now().Unix())
+	snd := sliceNDice{fileName: "data.csv" , splitRatio: 0.74}
+	snd.readCsv()
+	snd.split()
+	/*fmt.Println(dataset)*/
 }
