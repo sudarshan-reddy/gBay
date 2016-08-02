@@ -4,12 +4,25 @@ import (
 	"encoding/csv"
 	"fmt"
 	"os"
+	"strconv"
 )
 
+//put these in a seperate file later
+//or not
 func handleErr(err error){
 	if err != nil{
 		panic(err)
 	}
+}
+
+func str2flt(ip []string) []float64{
+	var retfloat []float64
+	for _ , val := range ip{
+		if n, err := strconv.ParseFloat(val,64);err == nil{
+			retfloat = append(retfloat, n)
+		}
+	}
+	return retfloat
 }
 
 type sliceNDice struct{
@@ -17,8 +30,8 @@ type sliceNDice struct{
 	splitRatio float64
 }
 
-func(s sliceNDice) readCsv() [][]string {
-	var dataset [][]string
+func(s sliceNDice) readCsv() [][]float64 {
+	var dataset [][]float64
 	file, err := os.Open(s.fileName)
 	handleErr(err)
 	defer file.Close()
@@ -30,7 +43,7 @@ func(s sliceNDice) readCsv() [][]string {
 	handleErr(err)
 
 	for _, vals := range rawData{
-		dataset = append(dataset,vals)
+		dataset = append(dataset,str2flt(vals))
 	}
 	return dataset
 }
