@@ -5,7 +5,7 @@ import (
 		"fmt"
 	)
 
-
+//parametric polymorphism here later
 func Sum(dataset []float64) float64{
 	var sum float64
 	for _, vals := range dataset{
