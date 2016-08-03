@@ -61,10 +61,8 @@ func(s sliceNDice) split() ([][]float64, [][]float64){
 	for len(trainingSet) < trainSize{
 		index := rand.Intn(len(testSet) - 1)
 		trainingSet = append(trainingSet,testSet[index])
-		fmt.Println(testSet[index])
-		/*delete(testSet , index)*/
+		testSet = append(testSet[:index], testSet[index + 1:]...)
 	}
-	//fmt.Println(trainingSet, testSet)
 	return trainingSet , testSet
 }
 
@@ -73,6 +71,6 @@ func main(){
 	rand.Seed(time.Now().Unix())
 	snd := sliceNDice{fileName: "data.csv" , splitRatio: 0.74}
 	snd.readCsv()
-	snd.split()
+	fmt.Println(snd.split())
 	/*fmt.Println(dataset)*/
 }
