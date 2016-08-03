@@ -46,3 +46,23 @@ func(s SliceNDice) Split() ([][]float64, [][]float64){
 	return trainingSet , testSet
 }
 
+func(s SliceNDice) ByClass(dataset [][]float64) map[int][][]float64 {
+	clsSep := make(map[int][][]float64)
+	for  _ , v := range dataset{
+		key := int(v[len(v) - 1])
+		clsSep[key] = append(clsSep[key], v)
+	}
+	return clsSep
+}
+
+/*Usage doodle- to be removed
+
+func main(){
+	snd := gBay.SliceNDice{FileName: "data.csv" , SplitRatio: 0.74}
+	snd.ReadCsv()
+	a, _ := snd.Split()
+	fmt.Println(snd.ByClass(a))
+
+}
+
+*/
