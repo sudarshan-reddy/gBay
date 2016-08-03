@@ -2,7 +2,6 @@ package gBay
 
 import (
 		"math"
-		"fmt"
 	)
 
 //parametric polymorphism here later
@@ -24,6 +23,5 @@ func stdDev(dataset []float64) float64{
 		variance+=(math.Pow((Mean(dataset) - values),2))/float64(len(dataset))
 	}
 	return math.Sqrt(variance)
-
 }
 
