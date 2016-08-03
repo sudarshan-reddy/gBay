@@ -1,43 +1,23 @@
-package main
+package gBay
 
 import (
 	"encoding/csv"
-	"fmt"
+	//"fmt"
 	"os"
-	"strconv"
 	"math/rand"
-	"time"
+	//"time"
 )
 
-
-//Generic: put these in a separate file later
-//or not
-func handleErr(err error){
-	if err != nil{
-		panic(err)
-	}
-}
-
-func str2flt(ip []string) []float64{
-	var retfloat []float64
-	for _ , val := range ip{
-		if n, err := strconv.ParseFloat(val,64);err == nil{
-			retfloat = append(retfloat, n)
-		}
-	}
-	return retfloat
-}
-
     
-type sliceNDice struct{
-	fileName string
-	splitRatio float64
-	dataset [][]float64
+type SliceNDice struct{
+	FileName string
+	SplitRatio float64
+	Dataset [][]float64
 }
 
-func(s *sliceNDice) readCsv() [][]float64 {
+func(s *SliceNDice) ReadCsv() [][]float64 {
 	var dataset [][]float64
-	file, err := os.Open(s.fileName)
+	file, err := os.Open(s.FileName)
 	handleErr(err)
 	defer file.Close()
 
@@ -50,14 +30,14 @@ func(s *sliceNDice) readCsv() [][]float64 {
 	for _, vals := range rawData{
 		dataset = append(dataset,str2flt(vals))
 	}
-	s.dataset = dataset
+	s.Dataset = dataset
 	return dataset
 }
 
-func(s sliceNDice) split() ([][]float64, [][]float64){
+func(s SliceNDice) Split() ([][]float64, [][]float64){
 	var trainingSet [][]float64
-	trainSize := int(float64(len(s.dataset)) * s.splitRatio)
-	testSet := s.dataset
+	trainSize := int(float64(len(s.Dataset)) * s.SplitRatio)
+	testSet := s.Dataset
 	for len(trainingSet) < trainSize{
 		index := rand.Intn(len(testSet) - 1)
 		trainingSet = append(trainingSet,testSet[index])
@@ -66,11 +46,3 @@ func(s sliceNDice) split() ([][]float64, [][]float64){
 	return trainingSet , testSet
 }
 
-func main(){
-
-	rand.Seed(time.Now().Unix())
-	snd := sliceNDice{fileName: "data.csv" , splitRatio: 0.74}
-	snd.readCsv()
-	fmt.Println(snd.split())
-	/*fmt.Println(dataset)*/
-}
