@@ -20,7 +20,7 @@ func Mean(dataset []float64) float64{
 func StDev(dataset []float64) float64{
 	var variance float64
 	for _ , values := range dataset{
-		variance+=(math.Pow((Mean(dataset) - values),2))/float64(len(dataset) - 1)
+		variance+=(math.Pow((Mean(dataset)-values),2))/float64(len(dataset)-1)
 	}
 	return math.Sqrt(variance)
 }
