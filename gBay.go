@@ -5,7 +5,7 @@ import (
 	//"fmt"
 	"os"
 	"math/rand"
-	//"time"
+	"time"
 )
 
     
@@ -35,6 +35,7 @@ func(s *SliceNDice) ReadCsv() [][]float64 {
 }
 
 func(s SliceNDice) Split() ([][]float64, [][]float64){
+	rand.Seed(time.Now().Unix())
 	var trainingSet [][]float64
 	trainSize := int(float64(len(s.Dataset)) * s.SplitRatio)
 	testSet := s.Dataset
