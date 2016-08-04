@@ -5,7 +5,6 @@ import (
 	"os"
 	"math/rand"
 	"time"
-	//"fmt"
 )
 
     
@@ -40,7 +39,12 @@ func(s SliceNDice) Split() ([][]float64, [][]float64){
 	trainSize := int(float64(len(s.Dataset)) * s.SplitRatio)
 	testSet := s.Dataset
 	for len(trainingSet) < trainSize{
-		index := rand.Intn(len(testSet) - 1)
+		var index int
+		if len(testSet) - 1 == 0{
+			index = 0
+		}else{
+			index = rand.Intn(len(testSet) - 1)
+		}
 		trainingSet = append(trainingSet,testSet[index])
 		testSet = append(testSet[:index], testSet[index + 1:]...)
 	}
@@ -60,17 +64,3 @@ func(s SliceNDice) ByClass(dataset [][]float64) map[int][][]float64 {
 	}
 	return clsSum
 }
-
-
-
-/*Usage doodle- to be removed
-
-func main(){
-	snd := gBay.SliceNDice{FileName: "data.csv" , SplitRatio: 0.74}
-	snd.ReadCsv()
-	a, _ := snd.Split()
-	fmt.Println(snd.ByClass(a))
-
-}
-
-*/
