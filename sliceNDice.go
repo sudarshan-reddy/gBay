@@ -5,6 +5,7 @@ import (
 	"os"
 	"math/rand"
 	"time"
+	//"fmt"
 )
 
     
@@ -48,12 +49,19 @@ func(s SliceNDice) Split() ([][]float64, [][]float64){
 
 func(s SliceNDice) ByClass(dataset [][]float64) map[int][][]float64 {
 	clsSep := make(map[int][][]float64)
+	clsSum := make(map[int][][]float64)
 	for  _ , v := range dataset{
 		key := int(v[len(v) - 1])
 		clsSep[key] = append(clsSep[key], v)
 	}
-	return clsSep
+	
+	for k,  v := range clsSep{
+		clsSum[k] = Summarize(v)		
+	}
+	return clsSum
 }
+
+
 
 /*Usage doodle- to be removed
 
