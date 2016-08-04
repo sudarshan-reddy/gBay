@@ -2,7 +2,6 @@ package gBay
 
 import (
 		"math"
-		//"fmt"
 	)
 
 //parametric polymorphism here later
