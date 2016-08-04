@@ -45,3 +45,8 @@ func Summarize(d [][]float64) [][]float64 {
 
 	return retD
 }
+
+func gaussPDF(x , mu , sigma float64) float64{
+	return (1 / math.Sqrt(2*math.Pi * sigma))*
+							math.Exp(-(math.Pow(x-mu,2))/2*math.Pow(sigma,2))
+}
