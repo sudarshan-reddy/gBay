@@ -28,7 +28,12 @@ func Predict(summaries map[int][][]float64 ,
 	return bestLabel
 }
 
-func getPredictions(summaries map[int][][]float64 ,
-		vector []float64){
-		
+func GetPredictions(summaries map[int][][]float64 ,
+		vectors [][]float64) []int{
+	var predictions []int
+	for k, _ := range vectors{
+		result := Predict(summaries, vectors[k])
+		predictions = append(predictions,result)
+	}
+	return predictions
 }

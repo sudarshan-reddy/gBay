@@ -10,18 +10,19 @@ func main(){
 	snd := gBay.SliceNDice{FileName: "data.csv" , SplitRatio: 0.75}
 	snd.ReadCsv()
 	training , test := snd.Split()
-	fmt.Println(test)
 	//prepare model
 	summaries := snd.ByClass(training)
-	fmt.Println(summaries)
-	vector := []float64{1.1, 1}
 	//predictions	
 	sums := map[int][][]float64{
 		0 : [][]float64{[]float64{1 , 0.5}}, 
 		1 : [][]float64{[]float64{20 , 5.0}}, 
 	}
-	fmt.Println(sums)
-	fmt.Println(gBay.CalcProbs(sums, vector))
-	//fmt.Println(gBay.CalcProbs(summaries, vector))
-	fmt.Println(gBay.Predict(sums,vector))
+
+	vector := [][]float64{
+		[]float64{1.1 , 0}, 
+		[]float64{19.1 , 0},
+	}
+
+	fmt.Println(gBay.GetPredictions(sums, vector))
+	fmt.Println(gBay.GetPredictions(summaries, test))
 }
