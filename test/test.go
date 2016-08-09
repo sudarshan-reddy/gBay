@@ -21,5 +21,5 @@ func main(){
 	}
 	fmt.Println(sums)
 	fmt.Println(gBay.CalcProbs(sums, vector))
-	//fmt.Println(gBay.CalcProbs(summaries, vector))
+	fmt.Println(gBay.CalcProbs(summaries, vector))
 }

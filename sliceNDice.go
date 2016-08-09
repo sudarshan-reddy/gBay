@@ -55,12 +55,12 @@ func(s SliceNDice) ByClass(dataset [][]float64) map[int][][]float64 {
 	clsSep := make(map[int][][]float64)
 	clsSum := make(map[int][][]float64)
 	for  _ , v := range dataset{
-		key := int(v[len(v) - 1])
-		clsSep[key] = append(clsSep[key], v)
+			key := int(v[len(v) - 1])
+			clsSep[key] = append(clsSep[key], v[:len(v)-1])
 	}
 	
 	for k,  v := range clsSep{
-		clsSum[k] = Summarize(v)		
+		clsSum[k] = Summarize(v)
 	}
 	return clsSum
 }
