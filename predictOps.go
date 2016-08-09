@@ -14,4 +14,17 @@ func CalcProbs(summaries map[int][][]float64 ,
 	}
 	return prob
 }
+
+func Predict(summaries map[int][][]float64 ,
+		vector []float64) int{
+	bestProb, bestLabel := -1.0 , -1
+	probabilities := CalcProbs(summaries, vector)
+	for classVal, probability := range probabilities{
+		if bestLabel == -1 || probability > bestProb{
+			bestProb = probability
+			bestLabel = classVal
+		}
+	}
+	return bestLabel
+}
 	
