@@ -31,9 +31,19 @@ func Predict(summaries map[int][][]float64 ,
 func GetPredictions(summaries map[int][][]float64 ,
 		vectors [][]float64) []int{
 	var predictions []int
-	for k, _ := range vectors{
-		result := Predict(summaries, vectors[k])
+	for _, v := range vectors{
+		result := Predict(summaries, v)
 		predictions = append(predictions,result)
 	}
 	return predictions
+}
+
+func GetAccuracy(testSet [][]float64, predictions []int) float64{
+	correct := 0
+	for k, v := range testSet{
+		if v[len(v)-1] == float64(predictions[k]){
+			correct++ 
+		}
+	}
+	return (float64(correct)/float64(len(testSet))) * 100.0
 }

@@ -24,5 +24,6 @@ func main(){
 	}
 
 	fmt.Println(gBay.GetPredictions(sums, vector))
-	fmt.Println(gBay.GetPredictions(summaries, test))
+	predictions := gBay.GetPredictions(summaries, test)
+	fmt.Println(gBay.GetAccuracy(test, predictions))
 }
