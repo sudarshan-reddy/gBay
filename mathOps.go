@@ -1,8 +1,6 @@
 package gBay
 
-import (
-		"math"
-	)
+import "math"
 
 //parametric polymorphism here later
 func Sum(dataset []float64) float64{
@@ -25,6 +23,7 @@ func StDev(dataset []float64) float64{
 	return math.Sqrt(variance)
 }
 
+//This function returns a mean and s.d summary for an input dataset
 func Summarize(d [][]float64) [][]float64 {
 	for i := 0; i < len(d) - 1 ; i++{
 		if len(d[i]) != len(d[i + 1]){
