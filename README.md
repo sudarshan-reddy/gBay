@@ -1,4 +1,4 @@
-Naive Bayes classifier implentation in Go
+#H2 Naive Bayes classifier implentation in Go 
 
 Takes in a dataset/CSV file, (resembling a numpy matrix) and returns predictions
 and accuracy.
