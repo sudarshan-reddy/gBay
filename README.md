@@ -16,7 +16,7 @@ Write an email spam example and link it here
 Installation Instructions
 
 ```sh
-go get https://github.com/sudsred/gBay
+go get github.com/sudsred/gBay
 ```
 
 Usage Example: 
