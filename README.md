@@ -8,7 +8,7 @@ TODO:
 Only used Gaussian PDF. Implement bernouli and multinomial as well (mathOPs.go change)
 
 
-~~Fix floating point underflow~~ Not needed because IEEE 754's binary64 can go upto 2-1024.
+~~Fix floating point underflow~~ Not needed because IEEE 754's binary64 can go upto 2^1024.
 
 
 Write an email spam example and link it here
