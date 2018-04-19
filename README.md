@@ -1,4 +1,4 @@
-#Naive Bayes classifier implementation in Go 
+# Naive Bayes classifier implementation in Go 
 
 Takes in a dataset/CSV file, (resembling a numpy matrix) and returns predictions
 and accuracy.
